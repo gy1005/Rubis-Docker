@@ -17,14 +17,15 @@ RUN yum install -y wget \
     && rpm -ivh epel-release-7-11.noarch.rpm \
     && yum install -y supervisor \
     && rm -f epel-release-7-11.noarch.rpm \
-    && wget -q --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; \
-       oraclelicense=accept-securebackup-cookie" \
-       http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.rpm \
-    && yum install -y /jdk-8u161-linux-x64.rpm \
-    && rm -f /jdk-8u161-linux-x64.rpm \
-    && wget -q http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.29/bin/apache-tomcat-8.5.29.tar.gz \
-    && tar -xvzf apache-tomcat-8.5.29.tar.gz \
-    && rm -rf /apache-tomcat-8.5.29.tar.gz \
+    # && wget -q --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; \
+    #    oraclelicense=accept-securebackup-cookie" \
+    #    http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.rpm \
+    # && yum install -y /jdk-8u161-linux-x64.rpm \
+    # && rm -f /jdk-8u161-linux-x64.rpm \
+    && yum install -y java-1.8.0-openjdk.x86_64 \
+    && wget -q http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.32/bin/apache-tomcat-8.5.32.tar.gz \
+    && tar -xvzf apache-tomcat-8.5.32.tar.gz \
+    && rm -rf /apache-tomcat-8.5.32.tar.gz \
     && yum clean all \
     && rm -rf /var/cache/yum 
 
@@ -36,7 +37,7 @@ RUN echo -e '\t StrictHostKeyChecking no'>>/etc/ssh/ssh_config \
     && echo -e '\t UserKnownHostsFile /dev/null'>>/etc/ssh/ssh_config
 
 
-ENV CATALINA_HOME /apache-tomcat-8.5.29
+ENV CATALINA_HOME /apache-tomcat-8.5.32
 ENV IS_DOCKER true
 
 # install rubis Servlets
